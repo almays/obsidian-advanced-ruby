@@ -16,8 +16,12 @@ export function jumpRuby(
 		if (plugin.lastJump) plugin.lastJump = undefined;
 		return false;
 	}
+	// Position right after the divider: opening brace + base + divider
 	const rubyTextStart: number =
-		upcomingRuby.start + upcomingRuby.base.length + 2;
+		upcomingRuby.start +
+		1 +
+		upcomingRuby.base.length +
+		upcomingRuby.divider.length;
 	const target: number =
 		direction === "left"
 			? plugin.lastJump === "right"

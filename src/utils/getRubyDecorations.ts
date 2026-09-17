@@ -28,7 +28,7 @@ export function getRubyDecorations(
 			ruby.start,
 			ruby.end,
 			Decoration.replace({
-				widget: new RubyWidget(ruby.base, ruby.ruby),
+				widget: new RubyWidget(ruby.base, ruby.ruby, ruby.divider),
 			}),
 		);
 	}

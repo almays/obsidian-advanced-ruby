@@ -1,8 +1,9 @@
 import { MD_RUBY_SYNTAX } from "../constants";
 import { type Syntax } from "../types";
 
+// Find the first of the target characters at the given nesting depth
 export function findCharAtDepthFrom(
-	target: string,
+	targets: string[],
 	depth: number,
 	text: string,
 	start: number,
@@ -16,7 +17,8 @@ export function findCharAtDepthFrom(
 		const character: string | undefined = text[index];
 		if (character === head) depth += 1;
 		else if (character === tail) depth -= 1;
-		if (character === target && depth === 0) return index;
+		if (character !== undefined && targets.includes(character) && depth === 0)
+			return index;
 	}
 	return;
 }

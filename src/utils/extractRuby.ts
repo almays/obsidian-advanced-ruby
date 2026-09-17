@@ -1,4 +1,4 @@
-import { MD_RUBY_SYNTAX } from "../constants";
+import { ESCAPE_CHAR, MD_RUBY_DIVIDERS, MD_RUBY_SYNTAX } from "../constants";
 import { type Ruby, type Syntax } from "../types";
 import { findCharAtDepthFrom } from "./findCharAtDepthFrom";
 
@@ -6,11 +6,8 @@ export function extractRuby(text: string, offset: number = 0): Ruby[] {
 	let extractedRuby: Ruby[] = [];
 	let pointerPosition: number = 0;
 	while (pointerPosition < text.length) {
-		const {
-			head: openingBrace,
-			divider: pipe,
-			tail: closingBrace,
-		}: Syntax = MD_RUBY_SYNTAX;
+		const { head: openingBrace, tail: closingBrace }: Syntax =
+			MD_RUBY_SYNTAX;
 		// Skip until the next opening brace
 		if (text[pointerPosition] !== openingBrace) {
 			pointerPosition += 1;
@@ -20,7 +17,7 @@ export function extractRuby(text: string, offset: number = 0): Ruby[] {
 
 		// Search for a closing brace at the same nesting level
 		const closingBraceIndex: number | undefined = findCharAtDepthFrom(
-			closingBrace,
+			[closingBrace],
 			1,
 			text,
 			openingBraceIndex + 1,
@@ -40,15 +37,24 @@ export function extractRuby(text: string, offset: number = 0): Ruby[] {
 
 		// Look for the top-level pipe inside the content
 		const pipeIndexInside: number | undefined = findCharAtDepthFrom(
-			pipe,
+			MD_RUBY_DIVIDERS,
 			0,
 			braceContent,
 			0,
 		);
 
+		// An escaped pipe belongs to the divider, not to the base
+		const dividerStart: number | undefined =
+			pipeIndexInside !== undefined &&
+			braceContent[pipeIndexInside - 1] === ESCAPE_CHAR
+				? pipeIndexInside - 1
+				: pipeIndexInside;
+
 		if (
 			// No top-level pipe = normal braces
-			!pipeIndexInside ||
+			pipeIndexInside === undefined ||
+			// Brace content starts with top-level pipe = empty base
+			dividerStart === 0 ||
 			// Brace content ends with top-level pipe = empty syntax
 			openingBraceIndex + 1 + pipeIndexInside === closingBraceIndex - 1
 		) {
@@ -60,8 +66,9 @@ export function extractRuby(text: string, offset: number = 0): Ruby[] {
 			extractedRuby.push({
 				start: offset + openingBraceIndex,
 				end: offset + closingBraceIndex + 1,
-				base: braceContent.slice(0, pipeIndexInside),
+				base: braceContent.slice(0, dividerStart),
 				ruby: braceContent.slice(pipeIndexInside + 1),
+				divider: braceContent.slice(dividerStart, pipeIndexInside + 1),
 			});
 		}
 		pointerPosition = closingBraceIndex + 1;

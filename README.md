@@ -31,6 +31,15 @@ If smart arrow keys are enabled, the cursor will jump over ruby without revealin
 
 Native style settings lets you customize the rendering to your liking.
 
+### Table-safe dividers
+
+The default divider `|` starts a new cell inside Markdown tables. To use ruby inside a table, write the divider in one of the table-safe forms — both render exactly like `{漢字|かんじ}`:
+
+- Escaped pipe: `{漢字\|かんじ}` — the standard Markdown escape, works everywhere
+- Full-width pipe: `{漢字｜かんじ}` — handy on Japanese keyboards
+
+The *Add ruby wrapper* command inserts the escaped form automatically when the cursor is on a table row.
+
 ### Syntax conversion
 
 ![Converting between syntaxes](/assets//convert_syntax.gif)

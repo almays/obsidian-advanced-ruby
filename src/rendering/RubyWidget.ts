@@ -8,6 +8,7 @@ export class RubyWidget extends WidgetType {
 	constructor(
 		private readonly base: string,
 		private readonly ruby: string,
+		private readonly divider: string,
 	) {
 		super();
 	}
@@ -19,7 +20,10 @@ export class RubyWidget extends WidgetType {
 		rubyEl.addEventListener("click", () => {
 			view.dispatch({
 				selection: EditorSelection.cursor(
-					view.posAtDOM(rubyEl) + 1 + this.base.length + 1,
+					view.posAtDOM(rubyEl) +
+						1 +
+						this.base.length +
+						this.divider.length,
 				),
 			});
 		});

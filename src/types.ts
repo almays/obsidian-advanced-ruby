@@ -23,6 +23,8 @@ export type Ruby = {
 	end: number;
 	base: string;
 	ruby: string;
+	// The divider as written in the source, e.g. "|", "\\|" or "｜"
+	divider: string;
 };
 
 export type SyntaxType = "HTML" | "MD";

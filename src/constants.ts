@@ -77,11 +77,23 @@ export const MD_RUBY_SYNTAX: Syntax = {
 	tail: "}",
 };
 
+// Alternative dividers that do not break Markdown tables:
+// the full-width pipe, and the ASCII pipe escaped with a backslash.
+export const MD_RUBY_ALT_DIVIDERS: string[] = ["｜"];
+
+export const MD_RUBY_DIVIDERS: string[] = [
+	MD_RUBY_SYNTAX.divider,
+	...MD_RUBY_ALT_DIVIDERS,
+];
+
+export const ESCAPE_CHAR: string = "\\";
+
 export const MD_RUBY_REGEX = new RegExp(
 	[
 		RegExp.escape(MD_RUBY_SYNTAX.head),
 		"([^{\\n]+?)",
-		RegExp.escape(MD_RUBY_SYNTAX.divider),
+		RegExp.escape(ESCAPE_CHAR) + "?",
+		"[" + MD_RUBY_DIVIDERS.map((d) => RegExp.escape(d)).join("") + "]",
 		"(.+?)",
 		RegExp.escape(MD_RUBY_SYNTAX.tail),
 	].join(""),
