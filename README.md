@@ -1,3 +1,5 @@
+> **Fork notice.** This is a personal fork of [peter-yanase/obsidian-advanced-ruby](https://github.com/peter-yanase/obsidian-advanced-ruby) that adds table-safe ruby dividers (`{base\|ruby}` and `{base｜ruby}`). It is published under its own plugin id (`advanced-ruby-tables`) so it can be installed via [BRAT](https://github.com/TfTHacker/obsidian42-brat) alongside, and updated independently of, the original. Upstream PR: [feat/table-safe-dividers](https://github.com/almays/obsidian-advanced-ruby/tree/feat/table-safe-dividers).
+
 <p align="center">
   <img src="/assets/advanced_ruby_logo.svg" alt="Advanced Ruby logo" /><br />
   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fpeter-yanase%2Fobsidian-advanced-ruby%2Fraw%2Frefs%2Fheads%2Fmaster%2Fmanifest.json&query=version&style=for-the-badge&label=version" alt="version badge">

@@ -1,10 +1,11 @@
 {
-	"id": "advanced-ruby",
-	"name": "Advanced Ruby",
-	"version": "3.0.0",
+	"id": "advanced-ruby-tables",
+	"name": "Advanced Ruby (Tables)",
+	"version": "3.0.1",
 	"minAppVersion": "1.13.1",
-	"description": "Enable complex, language-independent ruby annotation rendering.",
+	"description": "Fork of Advanced Ruby with table-safe ruby dividers: {base\\|ruby} and {base｜ruby}.",
 	"author": "Peter Yanase",
 	"fundingUrl": "https://ko-fi.com/kdijapan",
-	"isDesktopOnly": false
+	"isDesktopOnly": false,
+	"authorUrl": "https://github.com/almays/obsidian-advanced-ruby"
 }
