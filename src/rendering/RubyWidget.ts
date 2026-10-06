@@ -17,11 +17,11 @@ export class RubyWidget extends WidgetType {
 		const rubyEl: HTMLElement = createRubyElement(baseNodes, this.ruby);
 
 		// Move the cursor behind the pipe if the user clicks on the ruby
+		// (the widget starts right after the opening brace)
 		rubyEl.addEventListener("click", () => {
 			view.dispatch({
 				selection: EditorSelection.cursor(
 					view.posAtDOM(rubyEl) +
-						1 +
 						this.base.length +
 						this.divider.length,
 				),
