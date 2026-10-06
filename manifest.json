@@ -1,7 +1,7 @@
 {
 	"id": "advanced-ruby-tables",
 	"name": "Advanced Ruby (Tables)",
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"minAppVersion": "1.13.1",
 	"description": "Fork of Advanced Ruby with table-safe ruby dividers: {base\\|ruby} and {base｜ruby}.",
 	"author": "Peter Yanase",
